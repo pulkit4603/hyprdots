@@ -95,7 +95,3 @@ alias mkdir='mkdir -p'
 #Display Pokemon
 # pokemon-colorscripts --no-title -r 1,3,6
 
-# PERSONALIZED FUNCTIONS:
-function cfp {
-    python "%1" < "~/cp/input.txt" > "~/cp/output.txt"
-}
