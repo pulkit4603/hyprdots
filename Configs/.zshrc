@@ -1,14 +1,7 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# Path to your oh-my-zsh installation.
+# Oh-my-zsh installation path
 ZSH=/usr/share/oh-my-zsh/
 
-# Path to powerlevel10k theme
+# Powerlevel10k theme path
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # List of plugins used
@@ -35,10 +28,10 @@ source $ZSH/oh-my-zsh.sh
 #     return 127
 # }
 
-# Detect the AUR wrapper
-if pacman -Qi yay &>/dev/null ; then
+# Detect AUR wrapper
+if pacman -Qi yay &>/dev/null; then
    aurhelper="yay"
-elif pacman -Qi paru &>/dev/null ; then
+elif pacman -Qi paru &>/dev/null; then
    aurhelper="paru"
 fi
 
@@ -48,9 +41,9 @@ function in {
     local -a aur=()
 
     for pkg in "${inPkg[@]}"; do
-        if pacman -Si "${pkg}" &>/dev/null ; then
+        if pacman -Si "${pkg}" &>/dev/null; then
             arch+=("${pkg}")
-        else 
+        else
             aur+=("${pkg}")
         fi
     done
@@ -65,9 +58,9 @@ function in {
 }
 
 # Helpful aliases
-alias  c='clear' # clear terminal
-alias  l='eza -lh  --icons=auto' # long list
-alias ls='eza -1   --icons=auto' # short list
+alias c='clear' # clear terminal
+alias l='eza -lh --icons=auto' # long list
+alias ls='eza -1 --icons=auto' # short list
 alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
 alias ld='eza -lhD --icons=auto' # long list dirs
 alias lt='eza --icons=auto --tree' # list folder as tree
@@ -79,7 +72,7 @@ alias pc='$aurhelper -Sc' # remove unused cache
 alias po='$aurhelper -Qtdq | $aurhelper -Rns -' # remove unused packages, also try > $aurhelper -Qqd | $aurhelper -Rsu --print -
 alias vc='code' # gui code editor
 
-# Handy change dir shortcuts
+# Directory navigation shortcuts
 alias ..='cd ..'
 alias ...='cd ../..'
 alias .3='cd ../../..'
@@ -89,7 +82,7 @@ alias .5='cd ../../../../..'
 # Always mkdir a path (this doesn't inhibit functionality to make a single dir)
 alias mkdir='mkdir -p'
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #Display Pokemon
