@@ -95,3 +95,48 @@ alias mkdir='mkdir -p'
 #Display Pokemon
 # pokemon-colorscripts --no-title -r 1,3,6
 
+
+# PERSONALIZED FUNCTIONS:
+function cfp {
+    python "/home/pulkit/cp/python/$1" < "/home/pulkit/cp/input.txt" > "/home/pulkit/cp/output.txt"
+}
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
+function countdown() {
+    start="$(( $(date '+%s') + $1))"
+    while [ $start -ge $(date +%s) ]; do
+        time="$(( $start - $(date +%s) ))"
+        printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
+        sleep 0.1
+    done
+}
+
+function stopwatch() {
+    start=$(date +%s)
+    while true; do
+        time="$(( $(date +%s) - $start))"
+        printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
+        sleep 0.1
+    done
+}
+
+# bun completions
+[ -s "/home/pulkit/.bun/_bun" ] && source "/home/pulkit/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Adding local binaries to Path
+path+=('/home/pulkit/.local/bin')
+
+# export to sub-processes (make it inherited by child processes)
+export PATH
