@@ -70,7 +70,9 @@ alias pl='$aurhelper -Qs' # list installed package
 alias pa='$aurhelper -Ss' # list available package
 alias pc='$aurhelper -Sc' # remove unused cache
 alias po='$aurhelper -Qtdq | $aurhelper -Rns -' # remove unused packages, also try > $aurhelper -Qqd | $aurhelper -Rsu --print -
-alias vc='code' # gui code editor
+alias v='NVIM_APPNAME=nvim-personal nvim' # terminal code editor - personal config
+# alias vc='NVIM_APPNAME=nvim-nvchad nvim' # terminal code editor - nvchad config
+alias vc='nvim' # terminal code editor - nvchad config
 
 # Directory navigation shortcuts
 alias ..='cd ..'
@@ -81,6 +83,9 @@ alias .5='cd ../../../../..'
 
 # Always mkdir a path (this doesn't inhibit functionality to make a single dir)
 alias mkdir='mkdir -p'
+
+# Custom aliases
+alias cd='z' #bind zoxide
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -133,3 +138,5 @@ path+=('/home/pulkit/.local/bin')
 
 # export to sub-processes (make it inherited by child processes)
 export PATH
+
+eval "$(zoxide init zsh)"
